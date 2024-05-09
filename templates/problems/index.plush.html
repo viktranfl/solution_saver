@@ -9,13 +9,13 @@
 
 <table class="table table-hover table-bordered">
   <thead class="thead-light">
-    <th>Title</th><th>Link</th><th>UserID</th>
+    <th>Title</th><th>Link</th>
     <th>&nbsp;</th>
   </thead>
   <tbody>
     <%= for (problem) in problems { %>
       <tr>
-        <td class="align-middle"><%= problem.Title %></td><td class="align-middle"><%= problem.Link %></td><td class="align-middle"><%= problem.UserID %></td>
+        <td class="align-middle"><%= problem.Title %></td><td class="align-middle"><%= problem.Link %></td>
         <td>
           <div class="float-end">
             <%= linkTo(problemPath({ problem_id: problem.ID }), {class: "btn btn-info", body: "View"}) %>

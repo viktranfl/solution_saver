@@ -1,5 +1,34 @@
+<!--Prism-->
+<link id="import-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"/>
+
+<!--Code-input is on GitHub ==> https://github.com/WebCoder49/code-input-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/code-input.min.css">
+<script src="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/code-input.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/plugins/indent.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/plugins/auto-close-brackets.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/plugins/find-and-replace.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/plugins/find-and-replace.min.css">
+<script src="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/plugins/go-to-line.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/plugins/go-to-line.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/WebCoder49/code-input@2.2/plugins/prism-line-numbers.min.css">
+<script>
+    codeInput.registerTemplate("syntax-highlighted", codeInput.templates.prism(Prism, [new codeInput.plugins.Indent(true, 2), new codeInput.plugins.AutoCloseBrackets(), new codeInput.plugins.FindAndReplace(), new codeInput.plugins.GoToLine()]));
+</script>
+
 <%= f.InputTag("Title") %>
 <%= f.InputTag("Link") %>
-<%= f.TextAreaTag("Solution", {rows: 10}) %>
-<%= f.InputTag("UserID") %>
+<!--<%= f.TextAreaTag("Solution", {rows: 10}) %>-->
+<div class="form-group"><label class="form-label" for="problem-Solution">Solution</label>
+    <code-input language="Java" id="problem-Solution" name="Solution" rows="25" template="syntax-highlighted"><%= problem.Solution %></code-input>
+</div>
+<div>
+    <label class="small d-block">UserID</label>
+    <p class="d-inline-block"><%= problem.UserID %></p>
+</div>
+<!--<%= f.InputTag("UserID") %>-->
 <button class="btn btn-success" role="submit">Save</button>
