@@ -77,7 +77,7 @@ func (v ProblemsResource) Show(c buffalo.Context) error {
 
 	// To find the Problem the parameter problem_id is used.
 	uid := c.Session().Get("current_user_id")
-	if err := tx.Where("id = ? AND user_id = ?", c.Param("problem_id"), uid).All(problem); err != nil {
+	if err := tx.Where("id = ? AND user_id = ?", c.Param("problem_id"), uid).First(problem); err != nil {
 		return c.Error(http.StatusNotFound, err)
 	}
 
@@ -168,8 +168,9 @@ func (v ProblemsResource) Edit(c buffalo.Context) error {
 
 	// Allocate an empty Problem
 	problem := &models.Problem{}
-
-	if err := tx.Find(problem, c.Param("problem_id")); err != nil {
+	uid := c.Session().Get("current_user_id")
+	problem.UserID = uid.(uuid.UUID)
+	if err := tx.Where("id = ? AND user_id = ?", c.Param("problem_id"), uid).First(problem); err != nil {
 		return c.Error(http.StatusNotFound, err)
 	}
 
@@ -189,7 +190,9 @@ func (v ProblemsResource) Update(c buffalo.Context) error {
 	// Allocate an empty Problem
 	problem := &models.Problem{}
 
-	if err := tx.Find(problem, c.Param("problem_id")); err != nil {
+	uid := c.Session().Get("current_user_id")
+	problem.UserID = uid.(uuid.UUID)
+	if err := tx.Where("id = ? AND user_id = ?", c.Param("problem_id"), uid).First(problem); err != nil {
 		return c.Error(http.StatusNotFound, err)
 	}
 
@@ -246,7 +249,9 @@ func (v ProblemsResource) Destroy(c buffalo.Context) error {
 	problem := &models.Problem{}
 
 	// To find the Problem the parameter problem_id is used.
-	if err := tx.Find(problem, c.Param("problem_id")); err != nil {
+	uid := c.Session().Get("current_user_id")
+	problem.UserID = uid.(uuid.UUID)
+	if err := tx.Where("id = ? AND user_id = ?", c.Param("problem_id"), uid).First(problem); err != nil {
 		return c.Error(http.StatusNotFound, err)
 	}
 

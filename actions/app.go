@@ -97,6 +97,9 @@ func App() *buffalo.App {
 		problems.GET("/new", problemsResource.New)
 		problems.POST("/", problemsResource.Create)
 		problems.GET("/{problem_id}", problemsResource.Show)
+		problems.GET("/{problem_id}/edit", problemsResource.Edit)
+		problems.PUT("/{problem_id}", problemsResource.Update)
+		problems.DELETE("/{problem_id}", problemsResource.Destroy)
 
 		app.ServeFiles("/", http.FS(public.FS())) // serve files from the public directory
 	})
