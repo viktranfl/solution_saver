@@ -1,0 +1,9 @@
+create_table("problems") {
+	t.Column("id", "uuid", {primary: true})
+	t.Column("title", "string", {})
+	t.Column("link", "string", {null: true})
+	t.Column("solution", "text", {null: true})
+	t.Column("user_id", "uuid", {})
+	t.Timestamps()
+	t.ForeignKey("user_id", {"users": ["id"]}, {"on_delete": "cascade"})
+}

@@ -1,0 +1,33 @@
+<div class="py-4 mb-2">
+  <h3 class="d-inline-block">Problems</h3>
+  <div class="float-end">
+    <%= linkTo(newProblemsPath(), {class: "btn btn-primary"}) { %>
+      Create New Problem
+    <% } %>
+  </div>
+</div>
+
+<table class="table table-hover table-bordered">
+  <thead class="thead-light">
+    <th>Title</th><th>Link</th><th>UserID</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <%= for (problem) in problems { %>
+      <tr>
+        <td class="align-middle"><%= problem.Title %></td><td class="align-middle"><%= problem.Link %></td><td class="align-middle"><%= problem.UserID %></td>
+        <td>
+          <div class="float-end">
+            <%= linkTo(problemPath({ problem_id: problem.ID }), {class: "btn btn-info", body: "View"}) %>
+            <%= linkTo(editProblemPath({ problem_id: problem.ID }), {class: "btn btn-warning", body: "Edit"}) %>
+            <%= linkTo(problemPath({ problem_id: problem.ID }), {class: "btn btn-danger", "data-method": "DELETE", "data-confirm": "Are you sure?", body: "Destroy"}) %>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginator(pagination) %>
+</div>
